@@ -3,13 +3,13 @@
 don't import this library the wrong way, risking double-import issues.
 """
 
-import os
+from pathlib import Path
 
 
 
 
 raise Exception(
-  'Unsupported import path for PyDefCello.  Please add "{}" to your `sys.path` '
+  'Unsupported import path for PyYAUL.  Please add "{}" to your `sys.path` '
   'and import using `from defcello import ...`.'
-  .format(os.path.dirname(__file__)),
+  .format(Path(__file__).parent),
 )
