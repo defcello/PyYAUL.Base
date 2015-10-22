@@ -3,7 +3,7 @@ Utility module for unit testing in Python.
 """
 
 from pathlib import Path
-from defcello.importlib import fileImportPath
+from pyyaul.base.importlib import fileImportPath
 import os
 import sys
 import unittest

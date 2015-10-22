@@ -3,11 +3,14 @@ Common utility functions/classes for executable PY scripts.
 """
 
 from functools import wraps
+from pathlib import Path
 import os
 import traceback
 
 
 
+
+ROOTPARENTDIR = Path(__file__).parent.parent.parent  #: "`pathlib.Path` to parent of root directory of PyYAUL."
 
 class showError:
     """

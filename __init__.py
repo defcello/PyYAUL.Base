@@ -9,7 +9,7 @@ import os
 
 
 raise Exception(
-  'Unsupported import path for PyDefCello.  Please add "{}" to your `sys.path` '
-  'and import using `from defcello import ...`.'
+  'Unsupported import path for PyYAUL.  Please add "{}" to your `sys.path` '
+  'and import modules using `from pyyaul import ...`.'
   .format(os.path.dirname(__file__)),
 )
