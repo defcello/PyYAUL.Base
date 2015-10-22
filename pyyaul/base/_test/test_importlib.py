@@ -1,5 +1,5 @@
 """
-Test module for `pyyaul.base.importlib".
+Test module for `pyyaul.base.importlib`.
 """
 
 import unittest

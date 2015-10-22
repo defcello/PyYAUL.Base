@@ -5,14 +5,12 @@ Expansion of Python's `pathlib`.
 import os
 import pathlib
 
+
+
+
 class Path(pathlib.Path):
 
     __slots__ = ()
-
-    def __new__(cls, *args, **kargs):
-        #...because the dev forgot to support subclasses.
-        cls = WindowsPath if os.name == 'nt' else PosixPath
-        return pathlib.Path.__new__(cls, *args, **kargs)
 
     def __eq__(self, rhs):
         """
@@ -53,6 +51,15 @@ class Path(pathlib.Path):
             False
         """
         return Path(*others).is_subdir(self)
+        
+    def __len__(self):
+        """Returns the `int` number of parts in the path."""
+        return len(self.parts)
+
+    def __new__(cls, *args, **kargs):
+        #...because the dev forgot to support subclasses.
+        cls = WindowsPath if os.name == 'nt' else PosixPath
+        return pathlib.Path.__new__(cls, *args, **kargs)
 
     def relative_to(self, *others):
         """
