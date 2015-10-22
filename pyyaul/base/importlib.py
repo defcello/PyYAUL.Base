@@ -2,10 +2,25 @@
 Utility functions for dealing with Python imports.
 """
 
+from math import inf
+from pathlib import Path
 import sys
 
 
 
+
+def addToSysPath(*paths):
+    """
+    Adds the given path(s) to Python's `sys.path`.
+    :param paths: Any number of `pathlib.Path` or `str` paths to add to
+        `sys.path`.
+    """
+    for path in paths:
+        if not isinstance(path, Path):
+            path = Path(path)
+        pathStr = str(path.resolve())
+        if pathStr not in sys.path:
+            sys.path.append(pathStr)
 
 def fileImportPath(path):
     """
@@ -16,7 +31,7 @@ def fileImportPath(path):
     :throws ValueError: If given path is not importable from the current Python
         environment or path doesn't point to a PY, PYC, PYD, PYO, or PYW file.
     """
-    if path.suffix not in (".py", ".pyc", ".pyd", ".pyo", ".pyw"):
+    if path.suffix not in ('.py', '.pyc', '.pyd', '.pyo', '.pyw'):
         raise ValueError('Given file "{}" is not a Python module.'.format(path))
     shortestPath = None
     for syspath in sys.path:
@@ -33,4 +48,4 @@ def fileImportPath(path):
             'Given file "{}" is not within the Python\'s "sys.path" scope {}.'
             .format(path, sys.path)
         )
-    return ".".join(shortestPath.parts).rsplit('.', 1)[0]
+    return '.'.join(shortestPath.parts).rsplit('.', 1)[0]
