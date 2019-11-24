@@ -2,8 +2,7 @@ Uniform code styling is vital to good, maintainable code!  I have my own minute 
 but these are the big ones.
 
 # Indentation
-4 spaces.  NO TABS!  I'm more fond of 2 spaces, but since this is public-facing I'm going to stick
-with 4.
+Tabs.
 
 # Max Width
 100 chars.
