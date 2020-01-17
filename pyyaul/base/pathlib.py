@@ -1,3 +1,5 @@
+#! /usr/bin/env python3.7
+
 """
 Expansion of Python's `pathlib`.
 """
