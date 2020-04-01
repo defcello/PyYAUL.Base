@@ -53,7 +53,7 @@ class Path(pathlib.Path):
 			False
 		"""
 		return Path(*others).is_subdir(self)
-		
+
 	def __len__(self):
 		"""Returns the `int` number of parts in the path."""
 		return len(self.parts)
