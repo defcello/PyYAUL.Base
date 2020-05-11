@@ -70,7 +70,7 @@ class JsonFile(File):
 		if self.data is None:
 			self.data = {}
 		self.data.setdefault(keys[0], {})
-		fence = data[keys[0]]
+		fence = self.data[keys[0]]
 		for k in keys[1:-1]:
 			fence.setdefault(k, {})
 			fence = fence[k]
