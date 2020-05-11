@@ -68,8 +68,8 @@ class JsonFile(File):
 		if isinstance(keys, str):
 			keys = (keys,)
 		if self.data is None:
-			data = {}
-		data.setdefault(keys[0], {})
+			self.data = {}
+		self.data.setdefault(keys[0], {})
 		fence = data[keys[0]]
 		for k in keys[1:-1]:
 			fence.setdefault(k, {})
