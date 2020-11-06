@@ -29,7 +29,7 @@ class CsvFile(File):
 			self.data = []
 
 	def _save(self, path):
-		with path.open('w') as fd:
+		with path.open('w', newline='') as fd:
 			writer = csv.writer(fd, 'excel')
 			for r in self.data:
 				writer.writerow(r)

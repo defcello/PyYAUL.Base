@@ -40,6 +40,8 @@ class JsonFile(File):
 			keys = (keys,)
 		if self.data is None:
 			return default
+		if len(keys) == 1:
+			return self.data.get(keys[0], default)
 		fence = self.data.get(keys[0], {})
 		for k in keys[1:-1]:
 			fence = fence.get(k, {})
