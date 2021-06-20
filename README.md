@@ -26,7 +26,7 @@ development.
 
 ## Installation
 ### This project requires:
- - Python 3.4 or greater (requires implicit namespace packages and "pathlib" CAUSE THEY'RE AWESOME)
+ - Python 3.8 or greater.
 
 ### Optional:
  - Sphinx for generating API documentation
@@ -35,12 +35,17 @@ development.
 ## Usage
 
 ### To install:
-I typically use PyYAUL as a Git submodule in my projects (for easy version
-tracking) and add its root folder to the `sys.path` (hence the defensive
-"__init__.py"), but you can use Git subtree (especially if you want a small
-subset of the modules), toss it in your Python site-packages folder using the
-"setup.py" that'll inevitably get added, or clone it and add its root folder to
-your project's `sys.path`.
+There are options, but here's what I typically do:
 
-### To run:
-https://www.youtube.com/watch?v=8XiwtiDTlYU
+1. `cd myproject/`
+2. `mkdir lib`
+3. `cd lib`
+4. `git clone https://github.com/defcello/PyYAUL.Base pyyaulbase`
+6. Somewhere in your code:
+    ```python
+        import pathlib
+        import sys
+        sys.path.append(str((pathlib.Path(__file__).parent / 'lib' / 'pyyaulbase').resolve()))
+    ```
+
+Ultimately, get the root folders of ["PyYAUL.Base"](https://github.com/defcello/PyYAUL.Base) in Python's `sys.path`.
