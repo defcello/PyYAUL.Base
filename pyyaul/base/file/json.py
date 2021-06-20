@@ -16,9 +16,9 @@ class JsonFile(File):
 
 	data = None  #`dict` (default) -OR- `list` representing the internal data of the file.
 
-	def __init__(self, path=None):
+	def __init__(self, path=None, load=True, createIfMissing=True):
 		self.data = {}
-		super().__init__(path)
+		super().__init__(path, load, createIfMissing)
 
 	def get(self, keys, default=None, reload=False):
 		"""

@@ -18,10 +18,19 @@ class File:
 	path = None  #`pyyaul.base.pathlib.Path` object, or `None` if not representing a file in the file system.
 	data = None  #`object` representing the internal data of the file.
 
-	def __init__(self, path=None):
+	def __init__(self, path=None, load=True, createIfMissing=True):
 		self._mtime = None
 		if path is not None:
-			self.load(path)
+			self.path = self._pathResolve(path)
+			if createIfMissing and not self.exists():
+				self.save(path)
+			elif load:
+				self.load(path)
+
+	def exists(self):
+		if self.path is None:
+			return False
+		return self.path.exists()
 
 	def isDiffFromDisk(self):
 		"""
