@@ -92,8 +92,8 @@ class File:
 	def _mTimeUpdate(self):
 		"""
 		Updates `self._mtime` with the modification time currently in the file
-		system.  Should only be called when
+		system.
 		"""
-		if self.path is None:
+		if self.path is None or not self.path.exists():
 			return
 		self._mtime = os.path.getmtime(self.path)
