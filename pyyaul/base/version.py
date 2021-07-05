@@ -9,12 +9,14 @@ class Version:
 	def __init__(self):
 		pass
 
-	def _initialize(self, obj=None):
+	def _initialize(self, obj):
 		"""
 		Initializes `obj` to match this version from scratch.  `obj` may be
 		modified in place, but regardless will be returned.
 
-		May be overridden by subclasses.
+		By default, this will invoke `clsPrev._initialize` and use `self.update`
+		to bring it to this version.  However, subclasses may override this to
+		initialize to a later version.
 		"""
 		if self.clsPrev is None:
 			raise NotImplementedError()
@@ -32,12 +34,16 @@ class Version:
 		Updates `obj` from a previous `Version` to this `Version`.  `obj` may be
 		modified in place, but regardless will be returned.
 		"""
-		if not self.matches(obj):
-			if self.clsPrev is None:
-				obj = self._initialize(obj)
-			else:
-				obj = self.clsPrev().update(obj)
-		return self._update(obj)
+		v = self.version(obj)
+		if v is self.__class__:  #No update necessary.
+			pass
+		elif v is None:  #Build from scratch.
+			obj = self._initialize(obj)
+		elif clsPrev is not None:
+			obj = self.clsPrev().update(obj)
+			obj = self._update(obj)
+		assert self.matches(obj)
+		return obj  #Object
 
 	def _update(self, obj):
 		"""

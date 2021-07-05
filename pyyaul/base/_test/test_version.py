@@ -15,7 +15,7 @@ class Test_Version(TestCase):
 		from pyyaul.base import version
 		self.m = version
 		class TestStringV0(version.Version):
-			def _initialize(self, obj=None):
+			def _initialize(self, obj):
 				return "TestStringV0"
 			def matches(self, obj):
 				return obj == "TestStringV0"
@@ -24,7 +24,7 @@ class Test_Version(TestCase):
 		self.clsTestStringV0 = TestStringV0
 		class TestStringV1(version.Version):
 			clsPrev = TestStringV0
-			def _initialize(self, obj=None):
+			def _initialize(self, obj):
 				return "TestStringV1"
 			def matches(self, obj):
 				return obj == "TestStringV1"
@@ -33,7 +33,7 @@ class Test_Version(TestCase):
 		self.clsTestStringV1 = TestStringV1
 		class TestStringV2(version.Version):
 			clsPrev = TestStringV1
-			def _initialize(self, obj=None):
+			def _initialize(self, obj):
 				return "TestStringV2"
 			def matches(self, obj):
 				return obj == "TestStringV2"
