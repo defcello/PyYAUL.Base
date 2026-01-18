@@ -9,7 +9,7 @@ class Version:
     def __init__(self):
         pass
 
-    def _initialize(self, obj):
+    def _initialize(self, obj) ->object:
         """
         Initializes `obj` to match this version from scratch.  `obj` may be
         modified in place, but regardless will be returned.
@@ -23,13 +23,13 @@ class Version:
         obj = self.clsPrev()._initialize(obj)
         return self.update(obj)
 
-    def matches(self, obj):
+    def matches(self, obj :object) ->bool:
         """
         Returns `True` if `obj` matches this `Version`.
         """
         return False
 
-    def update(self, obj):
+    def update(self, obj :object) ->object:
         """
         Updates `obj` from a previous `Version` to this `Version`.  `obj` may be
         modified in place, but regardless will be returned.
@@ -45,7 +45,7 @@ class Version:
         assert self.matches(obj)
         return obj  #Object
 
-    def _update(self, obj):
+    def _update(self, obj :object) ->object:
         """
         Internal implementation to be overridden by subclasses.  Only gets
         called once `obj` is the same version as `self._prev`.  `obj` may be
