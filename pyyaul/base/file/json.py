@@ -71,11 +71,14 @@ class JsonFile(File):
 			keys = (keys,)
 		if self.data is None:
 			self.data = {}
-		self.data.setdefault(keys[0], {})
-		fence = self.data[keys[0]]
-		for k in keys[1:-1]:
-			fence.setdefault(k, {})
-			fence = fence[k]
-		fence[keys[-1]] = val
+		if len(keys) == 1:
+			self.data[keys[0]] = val
+		else:
+			self.data.setdefault(keys[0], {})
+			fence = self.data[keys[0]]
+			for k in keys[1:-1]:
+				fence.setdefault(k, {})
+				fence = fence[k]
+			fence[keys[-1]] = val
 		if save and self.path is not None:
 			self.save()

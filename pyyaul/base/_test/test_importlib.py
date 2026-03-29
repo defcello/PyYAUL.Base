@@ -18,4 +18,4 @@ class Test_fileImportPath(TestCase):
 	def test_basic(self):
 		act = self.m.fileImportPath(ROOTPARENTDIR / 'pyyaul' / 'base' / 'unittest.py')
 		exp = 'pyyaul.base.unittest'
-		self.assertEquals(act, exp)
+		self.assertEqual(act, exp)

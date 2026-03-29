@@ -19,17 +19,17 @@ class TestPath(TestCase):
 		self.m = pathlib
 
 	def testEqStr(self):
-		self.assertEquals(self.m.Path("/"), "/")
+		self.assertEqual(self.m.Path("/"), "/")
 
 	def testRelTo(self):
 		if os.name == "nt":
-			self.assertEquals(self.m.Path("C:/").relative_to("C:/Windows"), "..")
-			self.assertEquals(self.m.Path("C:/").relative_to("C:/"), ".")
-			self.assertEquals(self.m.Path("C:/Windows").relative_to("C:/"), "Windows")
+			self.assertEqual(self.m.Path("C:/").relative_to("C:/Windows"), "..")
+			self.assertEqual(self.m.Path("C:/").relative_to("C:/"), ".")
+			self.assertEqual(self.m.Path("C:/Windows").relative_to("C:/"), "Windows")
 		else:
-			self.assertEquals(self.m.Path("/").relative_to("/usr"), "..")
-			self.assertEquals(self.m.Path("/").relative_to("/"), ".")
-			self.assertEquals(self.m.Path("/usr").relative_to("/"), "usr")
+			self.assertEqual(self.m.Path("/").relative_to("/usr"), "..")
+			self.assertEqual(self.m.Path("/").relative_to("/"), ".")
+			self.assertEqual(self.m.Path("/usr").relative_to("/"), "usr")
 		#Can't think of a multiplatform way of testing impossible relative paths.
 
 	def testIsSubDir(self):

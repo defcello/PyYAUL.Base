@@ -44,21 +44,21 @@ class Test_Version(TestCase):
 	def test_basic(self):
 		exp = "TestStringV2"
 		obj = self.clsTestStringV2().update(None)
-		self.assertEquals(obj, exp)
+		self.assertEqual(obj, exp)
 		self.assertFalse(self.clsTestStringV0().matches(obj))
 		self.assertFalse(self.clsTestStringV1().matches(obj))
 		self.assertTrue(self.clsTestStringV2().matches(obj))
 		self.assertIs(self.clsTestStringV2().version(obj), self.clsTestStringV2)
 		exp = "TestStringV1"
 		obj = self.clsTestStringV1().update("ignored")
-		self.assertEquals(obj, exp)
+		self.assertEqual(obj, exp)
 		self.assertFalse(self.clsTestStringV0().matches(obj))
 		self.assertTrue(self.clsTestStringV1().matches(obj))
 		self.assertFalse(self.clsTestStringV2().matches(obj))
 		self.assertIs(self.clsTestStringV2().version(obj), self.clsTestStringV1)
 		exp = "TestStringV0"
 		obj = self.clsTestStringV0().update(None)
-		self.assertEquals(obj, exp)
+		self.assertEqual(obj, exp)
 		self.assertTrue(self.clsTestStringV0().matches(obj))
 		self.assertFalse(self.clsTestStringV1().matches(obj))
 		self.assertFalse(self.clsTestStringV2().matches(obj))
