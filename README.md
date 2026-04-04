@@ -1,12 +1,14 @@
 # PyYAUL
-Yet Another Utility Library.  A collection of utility functions/modules for
-Python.
+PyYAUL stands for "Yet Another Utility Library," a nod to YAML's original
+acronym, "Yet Another Markup Language." It is a collection of utility
+functions/modules for Python.
 
 PyYAUL is designed to be split into component libraries that can be used
 independently or together.  All component libraries will start with the root
 import "pyyaul".
 
-This is the "Base" component.  It requires only vanilla Python for all its modules.
+This is the "Base" component. It provides the core utilities shared across the
+PyYAUL family and requires only vanilla Python for all its modules.
 
 ====================================================================================================
 
