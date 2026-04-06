@@ -63,3 +63,12 @@ class Test_Version(TestCase):
 		self.assertFalse(self.clsTestStringV1().matches(obj))
 		self.assertFalse(self.clsTestStringV2().matches(obj))
 		self.assertIs(self.clsTestStringV2().version(obj), self.clsTestStringV0)
+
+	def test_update_from_previous_version_chain(self):
+		obj = self.clsTestStringV2().update("TestStringV0")
+		self.assertEqual(obj, "TestStringV2")
+		self.assertTrue(self.clsTestStringV2().matches(obj))
+
+		obj = self.clsTestStringV2().update("TestStringV1")
+		self.assertEqual(obj, "TestStringV2")
+		self.assertTrue(self.clsTestStringV2().matches(obj))

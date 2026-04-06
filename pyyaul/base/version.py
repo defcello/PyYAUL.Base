@@ -39,7 +39,7 @@ class Version:
             pass
         elif v is None:  #Build from scratch.
             obj = self._initialize(obj)
-        elif clsPrev is not None:
+        elif self.clsPrev is not None:
             obj = self.clsPrev().update(obj)
             obj = self._update(obj)
         assert self.matches(obj)
