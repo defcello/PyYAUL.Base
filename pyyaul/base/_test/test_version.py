@@ -40,6 +40,16 @@ class Test_Version(TestCase):
 			def _update(self, obj):
 				return "TestStringV2"
 		self.clsTestStringV2 = TestStringV2
+		class TestStringV10(version.Version):
+			clsPrev = TestStringV2
+			schema_version = 10
+			def _initialize(self, obj):
+				return "TestStringV10"
+			def matches(self, obj):
+				return obj == "TestStringV10"
+			def _update(self, obj):
+				return "TestStringV10"
+		self.clsTestStringV10 = TestStringV10
 
 	def test_basic(self):
 		exp = "TestStringV2"
@@ -72,3 +82,26 @@ class Test_Version(TestCase):
 		obj = self.clsTestStringV2().update("TestStringV1")
 		self.assertEqual(obj, "TestStringV2")
 		self.assertTrue(self.clsTestStringV2().matches(obj))
+
+	def test_schema_version_auto_numbering(self):
+		self.assertEqual(self.clsTestStringV0.schema_version, 0)
+		self.assertEqual(self.clsTestStringV1.schema_version, 1)
+		self.assertEqual(self.clsTestStringV2.schema_version, 2)
+
+	def test_schema_version_manual_override(self):
+		self.assertEqual(self.clsTestStringV10.schema_version, 10)
+		self.assertIs(
+			self.clsTestStringV10.version_class_from_schema_version(10),
+			self.clsTestStringV10,
+		)
+		self.assertIs(
+			self.clsTestStringV10.version_class_from_schema_version(1),
+			self.clsTestStringV1,
+		)
+		self.assertIsNone(self.clsTestStringV10.version_class_from_schema_version(99))
+
+	def test_schema_version_manual_override_validation(self):
+		with self.assertRaises(ValueError):
+			class InvalidVersion(self.m.Version):
+				clsPrev = self.clsTestStringV2
+				schema_version = 2
